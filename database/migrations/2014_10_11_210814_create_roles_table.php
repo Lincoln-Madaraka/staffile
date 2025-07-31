@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $roles = ['Admin', 'Writer', 'User'];
+        $roles = ['Admin', 'Employee', 'User'];
         foreach ($roles as $role){
             Role::create(['name' => $role]);
         }

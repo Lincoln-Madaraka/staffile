@@ -41,7 +41,7 @@ class Task extends Component
 
         $this->reset();
 
-        session()->flash('message', 'Category Created');
+        session()->flash('message', 'Task Created');
     }
 
     public function render()

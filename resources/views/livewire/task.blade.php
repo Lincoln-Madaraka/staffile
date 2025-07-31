@@ -91,6 +91,12 @@
                             Assigned to</th>
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            DueDate</th>
+                        <th
+                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            Completed at</th>
+                        <th
+                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Manage</th>
                     </tr>
                 </thead>
@@ -103,6 +109,9 @@
                             <td
                                 class="py-4 px-6 border-b border-grey-light {{ $task->assignedUser->name ?? 'text-red-700' }}">
                                 {{ $task->assignedUser->name ?? 'Not Assigned' }}</td>
+                            <td class="py-4 px-6 border-b border-grey-light">{{ $task->due_date }}</td>
+                            <td class="py-4 px-6 border-b border-grey-light">{{ $task->completed_at ?? "Not Completed" }}</td>
+
                             <td class="py-4 px-6 border-b border-grey-light">
                                 <button class="px-4 py-1 text-white font-light tracking-wider bg-green-600 rounded"
                                     type="button"

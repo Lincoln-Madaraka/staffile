@@ -61,4 +61,12 @@ class TaskController extends Controller
 
         return to_route('admin.auth_tasks.index')->with('message', 'Task Status Updated !');
     }
+
+    public function showSingleAssignedTask($id)
+    {
+        $task = Task::with('user', 'category')
+            ->where('assigned_to_user_id', auth()->id())->findOrFail($id);
+
+        return view('admin.task.show_single_assign_task', compact('task'));
+    }
 }

@@ -23,7 +23,7 @@
                                 <th
                                     class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                                     Due Date</th>
-                                    <th
+                                <th
                                     class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                                     Completed At</th>
                                 <th
@@ -40,9 +40,15 @@
                                     <td class="py-4 px-6 border-b border-grey-light">{{ $task->id }}</td>
                                     <td class="py-4 px-6 border-b border-grey-light">{{ $task->title }}</td>
                                     <td class="py-4 px-6 border-b border-grey-light">{{ $task->due_date }}</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">{{ $task->completed_at ?? "None"}}</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">{{ $task->completed_at ?? 'None' }}
+                                    </td>
                                     <td class="py-4 px-6 border-b border-grey-light">{{ $task->user->name }}</td>
                                     <td class="py-4 px-6 border-b border-grey-light">
+
+                                        <button
+                                            class="px-4 py-1 text-white font-light tracking-wider bg-orange-500 rounded"
+                                            type="button"
+                                            onclick="location.href='{{ route('admin.single_assign_task.show', $task->id) }}';">Show</button>
 
                                         @if (!$task->completed)
                                             <form type="submit" method="POST" style="display: inline"

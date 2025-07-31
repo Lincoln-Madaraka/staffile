@@ -17,11 +17,16 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'can:admin-login'])->name('admin.')->prefix('/admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
-    Route::resource('categories', CategoryController::class);
+
+    Route::middleware('can:admin-only')->group(function () {
+        Route::resource('categories', CategoryController::class);
+        Route::resource('tasks', TaskController::class);
+        Route::resource('users', UserController::class);
+    });
+
     Route::get('/assigned-tasks', [TaskController::class, 'showAuthAssignedTasks'])->name('auth_tasks.index');
+    Route::get('/show-single-assigned-task/{id}', [TaskController::class, 'showSingleAssignedTask'])->name('single_assign_task.show');
     Route::post('/complete-task/{id}', [TaskController::class, 'taskCompleteButton'])->name('complete_task.store');
-    Route::resource('tasks', TaskController::class);
-    Route::resource('users', UserController::class);
 
 });
 

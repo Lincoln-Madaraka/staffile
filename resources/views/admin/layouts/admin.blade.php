@@ -18,31 +18,31 @@
         }
 
         .bg-sidebar {
-            background: #A020F0;
+            background: #ffa500;
         }
 
         .cta-btn {
-            color: #A020F0;
+            color: #ffa500;
         }
 
         .upgrade-btn {
-            background: #7b0dbf;
+            background: #ff9000;
         }
 
         .upgrade-btn:hover {
-            background: #7b0dbf;
+            background: #ff9000;
         }
 
         .active-nav-link {
-            background: #7b0dbf;
+            background: #ff9000;
         }
 
         .nav-item:hover {
-            background: #7b0dbf;
+            background: #ff9000;
         }
 
         .account-link:hover {
-            background: #A020F0;
+            background: #ffa500;
         }
     </style>
     <style>
@@ -62,7 +62,12 @@
         <div class="p-4">
             <a href="{{ route('admin.index') }}"
                 class="text-white text-3xl font-semibold uppercase hover:text-gray-300">
-                Admin
+
+                @can('admin-only')
+                    Admin
+                @else
+                    Employee
+                @endcan
 
             </a>
             {{-- <button onclick="location.href='{{ route('admin.post.create') }}';"
@@ -72,27 +77,29 @@
         </div>
         <nav class="text-white text-base font-semibold">
             <a href="{{ route('admin.index') }}"
-                class="{{ request()->routeIs('admin.index') ? 'active-nav-link' : 'opacity-75 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
+                class="{{ request()->routeIs('admin.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
-            <a href="{{ route('admin.users.index') }}"
-                class="{{ request()->routeIs('admin.users.index') ? 'active-nav-link' : 'opacity-75 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                <i class="fas fa-user mr-3"></i>
-                User
-            </a>
-            <a href="{{ route('admin.categories.index') }}"
-                class="{{ request()->routeIs('admin.categories.index') ? 'active-nav-link' : 'opacity-75 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                <i class="fas fa-code-branch mr-3"></i>
-                Categories
-            </a>
-            <a href="{{ route('admin.tasks.index') }}"
-                class="{{ request()->routeIs('admin.tasks.index') ? 'active-nav-link' : 'opacity-75 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                <i class="fas fa-list mr-3"></i>
-                Tasks
-            </a>
+            @can('admin-only')
+                <a href="{{ route('admin.users.index') }}"
+                    class="{{ request()->routeIs('admin.users.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-user mr-3"></i>
+                    User
+                </a>
+                <a href="{{ route('admin.categories.index') }}"
+                    class="{{ request()->routeIs('admin.categories.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-code-branch mr-3"></i>
+                    Categories
+                </a>
+                <a href="{{ route('admin.tasks.index') }}"
+                    class="{{ request()->routeIs('admin.tasks.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-list mr-3"></i>
+                    Tasks
+                </a>
+            @endcan
             <a href="{{ route('admin.auth_tasks.index') }}"
-                class="{{ request()->routeIs('admin.auth_tasks.index') ? 'active-nav-link' : 'opacity-75 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
+                class="{{ request()->routeIs('admin.auth_tasks.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tasks mr-3"></i>
                 My Assigned Tasks
             </a>
@@ -113,24 +120,7 @@
 
         <!-- Desktop Header -->
         <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
-            {{-- Search --}}
-            <div class="relative text-lg bg-transparent text-gray-800 rounded">
-                <div class="flex items-center border-b border-teal-500 py-2">
-                    {{-- <form action="{{ route('admin.post.search') }}" method="GET"> --}}
-                    <input class="bg-transparent border-none mr-3 px-2 leading-tight focus:outline-none" type="text"
-                        placeholder="Search" name="search">
-                    {{-- </form> --}}
-                    <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
-                        <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px"
-                            y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
-                            xml:space="preserve" width="512px" height="512px">
-                            <path
-                                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+            <div class="w-full text-lg">Tasks Management</div>
             <div class="w-1/2"></div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <button @click="isOpen = !isOpen"
@@ -141,7 +131,7 @@
                     class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                     <a href="" class="block px-4 py-2 account-link hover:text-white">Account</a>
-                    <a href="http://linkedin.com" class="block px-4 py-2 account-link hover:text-white">Support</a>
+                    <a href="mailto:yassermelgammal@gmail.com" class="block px-4 py-2 account-link hover:text-white">Support</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button class="block px-4 py-2 account-link hover:text-white w-full text-left">Sign Out</button>
@@ -171,7 +161,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button
-                        class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item w-full text-left">
+                        class="flex items-center text-white opacity-85 hover:opacity-100 py-2 pl-4 nav-item w-full text-left">
                         <i class="fas fa-sign-out-alt mr-3"></i>
                         Sign Out
                     </button>
