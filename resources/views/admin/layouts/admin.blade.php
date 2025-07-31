@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks Management - Admin Panel</title>
+    <title>Staffile - Admin Panel</title>
     <meta name="author" content="Yasser Elgammal">
     <meta name="description" content="">
 
@@ -18,7 +18,7 @@
         }
 
         .bg-sidebar {
-            background: #ffa500;
+            background: rgba(133, 23, 8, 1);
         }
 
         .cta-btn {
@@ -87,21 +87,17 @@
                     <i class="fas fa-user mr-3"></i>
                     User
                 </a>
-                <a href="{{ route('admin.categories.index') }}"
-                    class="{{ request()->routeIs('admin.categories.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                    <i class="fas fa-code-branch mr-3"></i>
-                    Categories
-                </a>
-                <a href="{{ route('admin.tasks.index') }}"
-                    class="{{ request()->routeIs('admin.tasks.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
+
+                <a href="{{ route('admin.salary.index') }}"
+                    class="{{ request()->routeIs('admin.salary.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
                     <i class="fas fa-list mr-3"></i>
-                    Tasks
+                    Salaries
                 </a>
             @endcan
-            <a href="{{ route('admin.auth_tasks.index') }}"
-                class="{{ request()->routeIs('admin.auth_tasks.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
+            <a href="{{ route('admin.auth_salaries.index') }}"
+                class="{{ request()->routeIs('admin.auth_salaries.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tasks mr-3"></i>
-                My Assigned Tasks
+                Assigned Salaries
             </a>
 
 
@@ -120,7 +116,7 @@
 
         <!-- Desktop Header -->
         <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
-            <div class="w-full text-lg">Tasks Management</div>
+            <div class="w-full text-lg"> Payroll Management</div>
             <div class="w-1/2"></div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <button @click="isOpen = !isOpen"
@@ -189,9 +185,8 @@
         {{ $slot }}
 
         <footer class="w-full bg-white text-right p-4">
-            ControlPanel by <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a> |
-            Developed by <a target="_blank" href="https://linkedin.com/in/elgammal" class="underline">Yasser
-                Elgammal</a>.
+                        Developed by Lincoln
+        </a>.
         </footer>
     </div>
 
