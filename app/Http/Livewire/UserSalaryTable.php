@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\Salary;
 use Livewire\Component;
 
 class UserSalaryTable extends Component
