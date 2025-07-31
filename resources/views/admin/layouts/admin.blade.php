@@ -94,11 +94,7 @@
                     Salaries
                 </a>
             @endcan
-            <a href="{{ route('admin.auth_salaries.index') }}"
-                class="{{ request()->routeIs('admin.auth_salaries.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                <i class="fas fa-tasks mr-3"></i>
-                Assigned Salaries
-            </a>
+            
 
 
         </nav>
