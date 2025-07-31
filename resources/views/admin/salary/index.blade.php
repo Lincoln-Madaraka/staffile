@@ -1,5 +1,5 @@
 <x-admin-layout>
 
-    <livewire:task>
+    <livewire:salary>
 
 </x-admin-layout>

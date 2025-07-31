@@ -21,6 +21,7 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->decimal('amount', 10, 2);
             $table->foreignId('assigned_to_user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->date('assigned_date')->nullable();
             $table->timestamps();
