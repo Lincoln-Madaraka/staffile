@@ -7,13 +7,11 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
 class Salary extends Component
 {
     use WithPagination;
 
     public $salaryIdBeingEdited = null;
-
     public $user_id;
     public $gross_salary;
 
@@ -22,27 +20,23 @@ class Salary extends Component
         'gross_salary' => 'required|numeric|min:0',
     ];
 
-
     public function store()
     {
         $this->validate();
 
-        // Calculate deductions
-        $shif = 500; // fixed deduction
-        $housing_levy = 500; // fixed deduction
-        $paye = $this->gross_salary * 0.3; // 30% PAYE
+        // Check if employee already has a salary (if not editing)
+        $existing = SalaryModel::where('user_id', $this->user_id)->first();
+        if ($existing && !$this->salaryIdBeingEdited) {
+            session()->flash('error', 'This employee already has an assigned salary. Edit the existing record instead.');
+            return;
+        }
 
+        // Calculate deductions
+        $shif = $this->gross_salary * 0.05;
+        $housing_levy = $this->gross_salary * 0.05;
+        $paye = $this->gross_salary * 0.3;
         $net_salary = $this->gross_salary - ($shif + $housing_levy + $paye);
 
-        SalaryModel::create([
-            'user_id' => $this->user_id,
-            'amount' => $net_salary,
-            'gross_salary' => $this->gross_salary,
-            'shif' => $shif,
-            'housing_levy' => $housing_levy,
-            'paye' => $paye,
-            'net_salary' => $net_salary,
-        ]);
         if ($this->salaryIdBeingEdited) {
             $salary = SalaryModel::findOrFail($this->salaryIdBeingEdited);
             $salary->update([
@@ -69,9 +63,10 @@ class Salary extends Component
 
             session()->flash('message', 'Salary assigned successfully!');
         }
-        $this->reset(['user_id', 'gross_salary']);
-          
+
+        $this->reset(['user_id', 'gross_salary', 'salaryIdBeingEdited']);
     }
+
     public function edit($id)
     {
         $salary = SalaryModel::findOrFail($id);
@@ -98,4 +93,10 @@ class Salary extends Component
             'users' => User::select('id', 'name')->get(),
         ]);
     }
+    public function confirmDelete($id)
+    {
+        $this->delete($id);
+    }
+
 }
+

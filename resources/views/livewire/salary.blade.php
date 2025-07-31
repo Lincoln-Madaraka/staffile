@@ -1,6 +1,6 @@
 <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
     <main class="w-full flex-grow p-6">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Assign Salary</h1>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-600 mb-6">Assign Salary</h1>
 
         <form wire:submit.prevent="store" class="bg-white p-6 rounded shadow-md dark:bg-gray-800">
             @csrf
