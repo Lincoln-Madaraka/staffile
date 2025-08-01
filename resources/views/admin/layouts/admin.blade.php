@@ -201,7 +201,11 @@
             </div>
         @endif
         {{-- @yield('content') --}}
-        {{ $slot }}
+        @isset($slot)
+            {{ $slot }}
+        @else
+            @yield('content')
+        @endisset
 
         <footer class="w-full bg-white text-right p-4">
                         Developed by Lincoln
