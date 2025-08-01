@@ -6,9 +6,9 @@
 <div class="bg-white p-4 shadow rounded">
     <ul>
         <li><strong>Gross:</strong> KES {{ number_format($salary->gross_salary) }}</li>
-        <li><strong>SHIF:</strong> KES {{ number_format($salary->shif) }}</li>
-        <li><strong>Housing Levy:</strong> KES {{ number_format($salary->housing_levy) }}</li>
-        <li><strong>PAYE:</strong> KES {{ number_format($salary->paye) }}</li>
+        <li><strong>SHIF 5%:</strong> KES {{ number_format($salary->shif) }}</li>
+        <li><strong>Housing Levy 5%:</strong> KES {{ number_format($salary->housing_levy) }}</li>
+        <li><strong>PAYE 30%:</strong> KES {{ number_format($salary->paye) }}</li>
         <li><strong>Net Salary:</strong> KES {{ number_format($salary->net_salary) }}</li>
     </ul>
 
