@@ -17,5 +17,6 @@ export default {
         },
     },
 
+    
     plugins: [forms],
 };
