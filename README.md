@@ -1,20 +1,33 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-# Tasks Management App
+# Staffile Payroll Management App
 
-This is a task management application built with Laravel and Livewire. It allows you to create, assign, and track tasks within your organization. The app comes with features such as user management, task creation with due dates, task assignment to employees, task completion tracking, and administrative task tracking.
+Staffile is a simple web-based application built with Laravel and Livewire that helps organizations manage their employees and automate payroll processing.
+
+The system allows administrators to manage employee records, assign salaries, and generate payroll with automatic statutory deductions including SHIF, Housing Levy, and PAYE (30%)
 
 ## Features
 
-- User Management: The app allows you to create users with different roles. You can assign roles to users based on their responsibilities within the organization.
+- *Employee Management*
+Add, edit, view, and delete employee records. Each employee is uniquely managed with personal and contact information.
 
-- Task Creation: The admin can create tasks and specify a due date for each task. This helps in organizing and prioritizing tasks effectively.
+- *Salary Assignment*
+Assign a gross salary to each employee. The system ensures an employee can only have one salary assigned at a time.
 
-- Task Assignment: Tasks can be assigned to specific employees. By assigning tasks to individuals, you can ensure clear ownership and streamline task distribution.
+- *Statutory Deductions*
+Automatically deduct:
+   * SHIF: Fixed amount (e.g. 500)
+   * Housing Levy: Fixed amount (e.g. 500)
+   * PAYE: 30% of the gross salary
+These deductions are subtracted from the gross salary to compute the net salary.
 
-- Task Completion: Users can mark tasks as complete once they finish working on them. This provides a visual indicator of the progress made on each task.
+- *Payroll Generation*
+Generate payroll records for employees showing gross salary, each deduction, and net salary. This ensures clarity and compliance with statutory requirements.
 
-- Administrative Task Tracking: Admin users have access to a task tracking feature. This allows them to monitor the tasks assigned to different users and track their progress. It helps in identifying bottlenecks, ensuring timely completion, and balancing workload among team members.
+- *Livewire-Powered Interface*
+Built using Laravel Livewire for a smooth, interactive user experience with real-time updates.
+
+
 
 ## Installation
 
@@ -35,9 +48,8 @@ test@example.com
 password
 ````
 ## About Me
-
-A Junior Backend Developer with 1+ year of experience in web development, my expertise lies in
-PHP Laravel. Strong foundation in creating efficient and scalable web solutions. Skills include
+Hire Me Please!!
+I am a Fullstack Developer with 1+ year of experience in fullstack web and app development, my expertise lies in NextJs, Django Flask and PHP Laravel. Strong foundation in creating efficient and scalable web solutions. Skills include Python
 Laravel, PHP, TailwindCSS, and Livewire. Enjoy working with MySQL databases and REST APIs.
 Dedication to producing clean, well-documented code and sharing knowledge with others is
 essential. Committed to continuous learning and improvement to grow as a developer.
