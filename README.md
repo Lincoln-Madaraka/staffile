@@ -18,7 +18,7 @@ This is a task management application built with Laravel and Livewire. It allows
 
 ## Installation
 
-To install and run the Task Management App locally, follow these steps:
+To install and run the Staffile App locally, follow these steps:
 
 1. Clone the project
 2. Go to the project root directory and run `composer install` and `npm install`
@@ -42,10 +42,8 @@ Laravel, PHP, TailwindCSS, and Livewire. Enjoy working with MySQL databases and 
 Dedication to producing clean, well-documented code and sharing knowledge with others is
 essential. Committed to continuous learning and improvement to grow as a developer.
 
-- [LinkedIn](https://www.linkedin.com/in/elgammal/).
-- [Youtube](https://www.youtube.com/@yasser.elgammal).
-- [Dev_to](https://dev.to/yasserelgammal).
-
+- [My Portfolio](https://lincoln-madaraka-portfolio.vercel.app/).
+- [Twitter](https://x.com/syntaxrtx).
 
 
 
