@@ -93,6 +93,11 @@
                     <i class="fas fa-list mr-3"></i>
                     Salaries
                 </a>
+                <a href="{{ route('admin.payslips.index') }}"
+                class="{{ request()->routeIs('admin.payslips.*') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-file-invoice-dollar mr-3"></i>
+                    Payslips
+                </a>
             @endcan
             
 
@@ -161,8 +166,13 @@
                     <i class="fas fa-list mr-3"></i>
                     Salaries
                 </a>
+                <a href="{{ route('admin.payslips.index') }}"
+                class="{{ request()->routeIs('admin.payslips.*') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-2 pl-4 nav-item">
+                    <i class="fas fa-file-invoice-dollar mr-3"></i>
+                    Payslips
+                </a>
                 @endcan
-
+                
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PayslipController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,9 +20,12 @@ Route::middleware(['auth', 'can:admin-login'])->name('admin.')->prefix('/admin')
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     Route::middleware('can:admin-only')->group(function () {
-        Route::resource('categories', CategoryController::class);
         Route::resource('salary', SalaryController::class);
         Route::resource('users', UserController::class);
+
+        Route::get('/payslips', [PayslipController::class, 'index'])->name('payslips.index');
+        Route::get('/payslips/{salary}', [PayslipController::class, 'show'])->name('payslips.show');
+        Route::get('/payslips/{salary}/download', [PayslipController::class, 'download'])->name('payslips.download');
     });
 
     Route::get('/assigned-salaries', [SalaryController::class, 'showAuthAssignedSalaries'])->name('auth_salaries.index');
