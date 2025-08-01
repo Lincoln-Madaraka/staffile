@@ -148,7 +148,19 @@
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Dashboard
                 </a>
+                @can('admin-only')
+                <a href="{{ route('admin.users.index') }}"
+                class="{{ request()->routeIs('admin.users.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-2 pl-4 nav-item">
+                    <i class="fas fa-user mr-3"></i>
+                    Users
+                </a>
 
+                <a href="{{ route('admin.salary.index') }}"
+                class="{{ request()->routeIs('admin.salary.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-2 pl-4 nav-item">
+                    <i class="fas fa-list mr-3"></i>
+                    Salaries
+                </a>
+                @endcan
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
