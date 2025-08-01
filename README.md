@@ -1,5 +1,3 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 # Staffile Payroll Management App
 
 Staffile is a simple web-based application built with Laravel and Livewire that helps organizations manage their employees and automate payroll processing.
@@ -48,7 +46,7 @@ test@example.com
 password
 ````
 ## About Me
-Hire Me Please!!
+Hire Me!!
 I am a Fullstack Developer with 1+ year of experience in fullstack web and app development, my expertise lies in NextJs, Django Flask and PHP Laravel. Strong foundation in creating efficient and scalable web solutions. Skills include Python
 Laravel, PHP, TailwindCSS, and Livewire. Enjoy working with MySQL databases and REST APIs.
 Dedication to producing clean, well-documented code and sharing knowledge with others is
