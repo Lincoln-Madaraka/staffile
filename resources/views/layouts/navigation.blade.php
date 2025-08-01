@@ -4,9 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center h-14 w-14 bg-black p-2 rounded-full p-[0px]">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <img src="{{ asset('import/assets/logo.png') }}" alt="Staffile Logo" class="h-9 w-auto rounded-full">
                     </a>
                 </div>
 
