@@ -18,7 +18,7 @@
         }
 
         .bg-sidebar {
-            background: rgba(133, 23, 8, 1);
+            background: hsla(10, 6%, 20%, 1.00);
         }
 
         .cta-btn {
