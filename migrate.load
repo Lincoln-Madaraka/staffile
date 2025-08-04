@@ -1,0 +1,12 @@
+
+LOAD DATABASE
+     FROM mysql://root@localhost/laravel
+     INTO postgresql://stafffile_db_user:WPs4AmlZAssbE6AUqoSFAsrE9902cfc1@dpg-d28vikbuibrs73e1cfvg-a.oregon-postgres.render.com/stafffile_db
+
+WITH include no drop,
+     create tables,
+     create indexes,
+     reset sequences
+
+SET work_mem to '16MB',
+    maintenance_work_mem to '512 MB';
