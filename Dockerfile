@@ -22,7 +22,7 @@ RUN mkdir -p bootstrap/cache \
     storage/framework/views
 
 # Install dependencies (composer + npm)
-RUN composer install --no-dev --optimize-autoloader \
+RUN composer install --optimize-autoloader \
     && npm install && npm run build
 
 # Fix permissions after everything
