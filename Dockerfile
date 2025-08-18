@@ -1,3 +1,4 @@
+
 FROM php:8.2-fpm
 
 # Install system dependencies + PostgreSQL libs
@@ -15,7 +16,7 @@ WORKDIR /var/www
 # Copy project files
 COPY . .
 
-# Make sure Laravel cache + storage paths exist
+# Ensure Laravel storage + cache paths exist *before composer install*
 RUN mkdir -p bootstrap/cache storage/framework/{cache,sessions,views} \
     && chmod -R 777 storage bootstrap/cache
 
