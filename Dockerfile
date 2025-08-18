@@ -15,13 +15,7 @@ WORKDIR /var/www
 # Copy project files
 COPY . .
 
-# Ensure Laravel storage + cache paths exist before install
-RUN mkdir -p bootstrap/cache storage/framework/{cache,sessions,views} \
-    && chmod -R 777 storage bootstrap/cache
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader \
-    && npm install && npm run build
 
 # Set permissions again after build
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
