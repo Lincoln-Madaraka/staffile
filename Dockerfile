@@ -21,19 +21,24 @@ RUN mkdir -p bootstrap/cache \
     storage/framework/sessions \
     storage/framework/views
 
-# Install dependencies (composer + npm)
+# Install dependencies (include dev for Faker)
 RUN composer install --optimize-autoloader \
-    && npm install && npm run build
+    && npm install
 
-# Fix permissions after everything
+# Build Tailwind / Vite assets in production mode
+RUN NODE_ENV=production npm run build
+
+# Clear Laravel caches to ensure correct asset paths
+RUN php artisan config:clear \
+    && php artisan route:clear \
+    && php artisan view:clear
+
+# Fix permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
-
-
-# Set permissions again after build
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Expose port
 EXPOSE 8000
 
-# Run migrations + then start Laravel server
+# Run migrations + seeding once, then start Laravel server
 CMD ["sh", "-c", "php artisan migrate --seed --force && php artisan serve --host=0.0.0.0 --port=8000"]
+
