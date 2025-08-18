@@ -22,6 +22,7 @@ These deductions are subtracted from the gross salary to compute the net salary.
 - *Payroll Generation*
 Generate payroll records for employees showing gross salary, each deduction, and net salary. This ensures clarity and compliance with statutory requirements.
 
+- 
 - *Livewire-Powered Interface*
 Built using Laravel Livewire for a smooth, interactive user experience with real-time updates.
 
@@ -46,7 +47,7 @@ test@example.com
 password
 ````
 ## About Me
-Hire Me!!
+*Reach Out To Me btw!!*
 I am a Fullstack Developer with 1+ year of experience in fullstack web and app development, my expertise lies in NextJs, Django Flask and PHP Laravel. Strong foundation in creating efficient and scalable web solutions. Skills include Python
 Laravel, PHP, TailwindCSS, and Livewire. Enjoy working with MySQL databases and REST APIs.
 Dedication to producing clean, well-documented code and sharing knowledge with others is
@@ -58,3 +59,4 @@ essential. Committed to continuous learning and improvement to grow as a develop
 
 
 **Deploying**
+Deployed on Render
