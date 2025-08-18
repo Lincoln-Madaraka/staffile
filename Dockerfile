@@ -26,8 +26,7 @@ RUN composer install --optimize-autoloader \
     && npm install
 
 # Build Tailwind / Vite assets in production mode
-RUN npm run build
-    && ls -l public/build
+RUN npm run build && ls -l public/build
 
 # Clear Laravel caches to ensure correct asset paths
 RUN php artisan config:clear \
