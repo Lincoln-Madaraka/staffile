@@ -1,10 +1,9 @@
-
 FROM php:8.2-fpm
 
 # Install system dependencies + PostgreSQL libs
 RUN apt-get update && apt-get install -y \
     git curl libpng-dev libonig-dev libxml2-dev zip unzip \
-    libpq-dev \
+    libpq-dev nodejs npm \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
 
 # Install Composer
@@ -16,16 +15,16 @@ WORKDIR /var/www
 # Copy project files
 COPY . .
 
-# ✅ Fix cache + storage paths BEFORE composer install
-RUN mkdir -p bootstrap/cache \
-    && mkdir -p storage/framework/{cache,sessions,views} \
-    && chmod -R 777 bootstrap/cache storage
+# Ensure Laravel storage + cache paths exist before install
+RUN mkdir -p bootstrap/cache storage/framework/{cache,sessions,views} \
+    && chmod -R 777 storage bootstrap/cache
 
 # Install dependencies
-RUN composer install --no-dev --optimize-autoloader --no-scripts \
-    && composer run-script post-autoload-dump
+RUN composer install --no-dev --optimize-autoloader \
+    && npm install && npm run build
 
-RUN npm install && npm run build
+# Set permissions again after build
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Expose port
 EXPOSE 8000
