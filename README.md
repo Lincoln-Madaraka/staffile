@@ -22,7 +22,8 @@ These deductions are subtracted from the gross salary to compute the net salary.
 - *Payroll Generation*
 Generate payroll records for employees showing gross salary, each deduction, and net salary. This ensures clarity and compliance with statutory requirements.
 
-- 
+- *Download Payslip*
+The Admin is able to view an employees payslip and download. The employee can download their payslip.
 - *Livewire-Powered Interface*
 Built using Laravel Livewire for a smooth, interactive user experience with real-time updates.
 
