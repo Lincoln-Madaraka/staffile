@@ -20,7 +20,7 @@ Automatically deduct:
 These deductions are subtracted from the gross salary to compute the net salary.
 
 - *Payroll Generation*
-Generate payroll records for employees showing gross salary, each deduction, and net salary. This ensures clarity and compliance with statutory requirements.
+Generate payroll records for employees showing gross salary, each deduction, and net salary. This ensures clarity and compliance with statutory requirementss.
 
 - *Download Payslip*
 The Admin is able to view an employees payslip and download. The employee can download their payslip.
