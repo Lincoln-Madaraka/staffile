@@ -15,15 +15,18 @@ WORKDIR /var/www
 # Copy project files
 COPY . .
 
-# Ensure Laravel storage + cache paths exist before install
-RUN mkdir -p bootstrap/cache storage/framework/{cache,sessions,views}
+# Ensure Laravel cache + storage paths exist BEFORE composer install
+RUN mkdir -p bootstrap/cache \
+    storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views
 
-# Install dependencies
+# Install dependencies (composer + npm)
 RUN composer install --no-dev --optimize-autoloader \
     && npm install && npm run build
 
-# Fix permissions after build
-RUN chmod -R 777 storage bootstrap/cache
+# Fix permissions after everything
+RUN chown -R www-data:www-data storage bootstrap/cache
 
 
 # Set permissions again after build
