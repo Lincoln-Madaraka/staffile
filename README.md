@@ -52,7 +52,7 @@ password
 I am a Fullstack Developer with 1+ year of experience in fullstack web and app development, my expertise lies in NextJs, Django Flask and PHP Laravel. Strong foundation in creating efficient and scalable web solutions. Skills include Python
 Laravel, PHP, TailwindCSS, and Livewire. Enjoy working with MySQL databases and REST APIs.
 Dedication to producing clean, well-documented code and sharing knowledge with others is
-essential. Committed to continuous learning and improvement to grow as a developer.
+essential. Committed to continuous learning and improvement to grow as git a developer.
 
 - [My Portfolio](https://lincoln-madaraka-portfolio.vercel.app/).
 - [Twitter](https://x.com/syntaxrtx).
