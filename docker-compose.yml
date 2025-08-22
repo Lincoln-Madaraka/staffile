@@ -9,7 +9,7 @@ services:
     volumes:
       - ./:/var/www/html
     env_file:
-      - .env.docker
+      - .env
     depends_on:
       - db
     restart: unless-stopped
