@@ -1,43 +1,35 @@
 FROM php:8.2-fpm
 
-# Install system dependencies + PostgreSQL libs
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git curl libpng-dev libonig-dev libxml2-dev zip unzip \
-    libpq-dev nodejs npm \
-    && docker-php-ext-install pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd
 
 # Install Composer
-COPY --from=composer:2.5 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
 
-# Copy project files
+# Copy existing app
 COPY . .
 
-# Ensure Laravel cache + storage paths exist BEFORE composer install
-RUN mkdir -p bootstrap/cache \
-    storage/framework/cache \
-    storage/framework/sessions \
-    storage/framework/views
+# Ensure Laravel storage + cache dirs exist with correct permissions
+RUN mkdir -p storage/logs bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
-# Install dependencies (include dev for Faker)
-RUN composer install --optimize-autoloader \
-    && npm install
+# Install PHP dependencies
+RUN composer install --no-scripts --no-autoloader --prefer-dist --optimize-autoloader
 
-# Build Tailwind / Vite assets in production mode
-RUN npm run build && ls -l public/build
+# Optimize Laravel
+RUN php artisan config:clear && php artisan cache:clear
 
-# Clear Laravel caches to ensure correct asset paths
-RUN php artisan config:clear \
-    && php artisan route:clear \
-    && php artisan view:clear
-
-# Fix permissions
-RUN chown -R www-data:www-data storage bootstrap/cache
-
-# Expose port
-EXPOSE 8000
-
-# CMD: run migrations & seed safely, then start Laravel server
-CMD ["sh", "-c", "php artisan migrate --seed --force || true && php artisan serve --host=0.0.0.0 --port=8000"]
+CMD ["php-fpm"]
