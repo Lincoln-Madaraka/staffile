@@ -32,4 +32,4 @@ RUN composer install --no-dev --prefer-dist --optimize-autoloader
 # Optimize Laravel
 RUN php artisan config:clear && php artisan cache:clear
 
-CMD ["php-fpm"]
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
