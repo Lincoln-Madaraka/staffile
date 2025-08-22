@@ -31,6 +31,10 @@ RUN mkdir -p storage/logs bootstrap/cache \
 # Install PHP dependencies
 RUN composer install --no-dev --prefer-dist --optimize-autoloader
 
+# Install Node dependencies and build Vite assets
+RUN npm install
+RUN npm run build
+
 # Optimize Laravel
 RUN php artisan config:clear && php artisan cache:clear
 
