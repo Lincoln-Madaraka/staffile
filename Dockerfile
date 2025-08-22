@@ -27,7 +27,7 @@ RUN mkdir -p storage/logs bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
 # Install PHP dependencies
-RUN composer install --no-scripts --no-autoloader --prefer-dist --optimize-autoloader
+RUN composer install --no-dev --prefer-dist --optimize-autoloader
 
 # Optimize Laravel
 RUN php artisan config:clear && php artisan cache:clear
