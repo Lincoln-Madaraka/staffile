@@ -62,3 +62,9 @@ essential. Committed to continuous learning and improvement to grow as git a dev
 **Project Status**
 Deployed on render 
 [Live-Site](https://payroll-manager.onrender.com)
+
+**Test Credentials**
+````
+test@example.com
+password
+````
