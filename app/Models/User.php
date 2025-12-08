@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -43,6 +44,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * Relationships
+     */
     public function categories()
     {
         return $this->hasMany(Category::class);
@@ -61,5 +65,28 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Role helpers (safe, readable, great for gates & UI)
+     */
+    public function hasRole(string $roleName): bool
+    {
+        return $this->role && $this->role->name === $roleName;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole(Role::ADMIN);
+    }
+
+    public function isDoctor(): bool
+    {
+        return $this->hasRole(Role::DOCTOR);
+    }
+
+    public function isPatient(): bool
+    {
+        return $this->hasRole(Role::PATIENT);
     }
 }

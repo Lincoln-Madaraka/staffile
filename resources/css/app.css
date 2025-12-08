@@ -1,3 +1,136 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ---------------------------------------------
+   GiftMed Theme Tokens
+   We use CSS variables so the whole UI stays
+   consistent across Blade + Livewire.
+   --------------------------------------------- */
+
+/* Optional light baseline (won’t be your focus yet) */
+:root {
+    --gm-bg: 248 250 252;          /* slate-50-ish */
+    --gm-surface: 255 255 255;
+    --gm-surface-2: 241 245 249;   /* slate-100-ish */
+    --gm-border: 226 232 240;      /* slate-200-ish */
+
+    --gm-text: 15 23 42;           /* slate-900-ish */
+    --gm-muted: 71 85 105;         /* slate-600-ish */
+
+    --gm-primary: 30 64 175;       /* blue-800-ish */
+    --gm-primary-hover: 29 78 216; /* blue-700-ish */
+    --gm-accent: 6 182 212;        /* cyan-500-ish */
+
+    --gm-success: 34 197 94;       /* green-500 */
+    --gm-warning: 245 158 11;      /* amber-500 */
+    --gm-danger: 239 68 68;        /* red-500 */
+}
+
+/* GiftMed Dark Blue (primary experience) */
+.dark {
+    --gm-bg: 6 11 22;              /* deep navy */
+    --gm-surface: 10 18 35;        /* card surface */
+    --gm-surface-2: 14 26 48;      /* secondary surface */
+    --gm-border: 30 41 59;         /* slate-800-ish */
+
+    --gm-text: 226 232 240;        /* slate-200 */
+    --gm-muted: 148 163 184;       /* slate-400 */
+
+    --gm-primary: 56 106 255;      /* vibrant medical blue */
+    --gm-primary-hover: 86 131 255;
+    --gm-accent: 34 211 238;       /* cyan accent */
+
+    --gm-success: 34 197 94;
+    --gm-warning: 245 158 11;
+    --gm-danger: 248 113 113;
+}
+
+/* ---------------------------------------------
+   Base layer tweaks
+   --------------------------------------------- */
+@layer base {
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        @apply bg-gm-bg text-gm-text antialiased;
+    }
+
+    /* Improve default borders in dark mode */
+    hr {
+        @apply border-gm-border;
+    }
+
+    /* Links */
+    a {
+        @apply text-gm-primary hover:text-gm-primaryHover transition-colors;
+    }
+}
+
+/* ---------------------------------------------
+   Components layer helpers
+   We’ll use these classes in layouts/views.
+   --------------------------------------------- */
+@layer components {
+    .gm-card {
+        @apply bg-gm-surface border border-gm-border rounded-gm shadow-gm-soft;
+    }
+
+    .gm-card-muted {
+        @apply bg-gm-surface-2 border border-gm-border rounded-gm;
+    }
+
+    .gm-btn {
+        @apply inline-flex items-center justify-center gap-2
+               px-4 py-2 rounded-lg font-medium
+               border border-transparent
+               bg-gm-primary text-white
+               hover:bg-gm-primaryHover
+               transition-colors;
+    }
+
+    .gm-btn-outline {
+        @apply inline-flex items-center justify-center gap-2
+               px-4 py-2 rounded-lg font-medium
+               border border-gm-border
+               bg-transparent text-gm-text
+               hover:bg-gm-surface-2
+               transition-colors;
+    }
+
+    .gm-input {
+        @apply w-full rounded-lg border border-gm-border
+               bg-gm-surface text-gm-text
+               placeholder:text-gm-muted
+               focus:border-gm-primary focus:ring-gm-primary/30;
+    }
+
+    .gm-label {
+        @apply text-sm font-medium text-gm-muted;
+    }
+
+    .gm-table {
+        @apply w-full border border-gm-border rounded-gm overflow-hidden;
+    }
+
+    .gm-table thead {
+        @apply bg-gm-surface-2;
+    }
+
+    .gm-table th {
+        @apply text-left text-xs uppercase tracking-wider
+               text-gm-muted px-4 py-3 border-b border-gm-border;
+    }
+
+    .gm-table td {
+        @apply px-4 py-3 border-b border-gm-border text-gm-text;
+    }
+
+    .gm-badge {
+        @apply inline-flex items-center px-2 py-0.5 rounded-full
+               text-xs font-medium bg-gm-surface-2 text-gm-text
+               border border-gm-border;
+    }
+}
