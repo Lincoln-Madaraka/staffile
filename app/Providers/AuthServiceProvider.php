@@ -9,24 +9,13 @@ use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    /**
-     * The model to policy mappings for the application.
-     *
-     * @var array<class-string, class-string>
-     */
     protected $policies = [
         //
     ];
 
-    /**
-     * Register any authentication / authorization services.
-     */
     public function boot(): void
     {
-        /**
-         * Super-clean GiftMed rule:
-         * Admins can pass any gate.
-         */
+        // Admins pass everything.
         Gate::before(function (User $user) {
             $roleName = $user->role?->name;
 
@@ -37,19 +26,21 @@ class AuthServiceProvider extends ServiceProvider
             return null;
         });
 
-        /**
-         * Used on /admin route group.
-         * For GiftMed, this should be ADMIN-only.
-         */
+        // Used by /admin group
         Gate::define('admin-login', function (User $user) {
             return $user->role?->name === Role::ADMIN;
         });
 
-        /**
-         * "admin-only" stays strict.
-         */
         Gate::define('admin-only', function (User $user) {
             return $user->role?->name === Role::ADMIN;
+        });
+
+        Gate::define('doctor-only', function (User $user) {
+            return $user->role?->name === Role::DOCTOR;
+        });
+
+        Gate::define('patient-only', function (User $user) {
+            return $user->role?->name === Role::PATIENT;
         });
     }
 }

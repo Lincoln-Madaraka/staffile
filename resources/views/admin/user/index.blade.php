@@ -1,51 +1,84 @@
-<x-admin-layout>
+<x-admin-layout
+    title="Users"
+    subtitle="Manage admins, doctors, and patients."
+>
+    <x-slot name="actions">
+        <a href="{{ route('admin.users.create') }}" class="gm-btn text-xs">
+            Add User
+        </a>
+    </x-slot>
 
-    <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
-        <main class="w-full flex-grow p-6">
-            <h1 class="w-full text-3xl text-black pb-6">Users</h1>
+    <div class="space-y-4">
+        <x-session-message />
 
-            <x-session-message />
+        <div class="flex items-center gap-2">
+            <span class="gm-badge">Users Records</span>
+            <span class="text-sm text-gm-muted">
+                Total shown: {{ method_exists($users, 'count') ? $users->count() : 0 }}
+            </span>
+        </div>
 
-            <div class="w-full mt-12">
-                <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Users Records
-                </p>
-                <button class="px-4 py-1 text-white font-light tracking-wider bg-blue-600 rounded mb-2"
-                onclick="location.href='{{ route('admin.users.create') }}';">Add User</button>
-                <div class="bg-white overflow-auto">
-                    <table class="text-left w-full border-collapse">
-                        <thead>
-                            <tr>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">ID</th>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Name</th>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Role</th>
-                                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Manage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user)
-                            <tr class="hover:bg-grey-lighter">
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $user->id }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $user->name }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">{{ $user->role->name }}</td>
-                                <td class="py-4 px-6 border-b border-grey-light">
-                                    <button class="px-4 py-1 text-white font-light tracking-wider bg-green-600 rounded"
-                                    type="button"
-                                    onclick="location.href='{{ route('admin.users.edit', $user->id) }}';">Edit</button>
-                                    <form type="submit" method="POST" style="display: inline" action="{{ route('admin.users.destroy', $user->id)}}" onsubmit="return confirm('Are you sure?')">
+        <div class="overflow-auto">
+            <table class="gm-table">
+                <thead>
+                    <tr>
+                        <th class="w-20">ID</th>
+                        <th>Name</th>
+                        <th class="w-40">Role</th>
+                        <th class="w-64">Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($users as $user)
+                        <tr class="hover:bg-gm-surface2/60">
+                            <td>{{ $user->id }}</td>
+                            <td class="font-medium">
+                                {{ $user->name }}
+                            </td>
+                            <td>
+                                <span class="gm-badge">
+                                    {{ $user->role?->name ?? 'unassigned' }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <x-secondary-button
+                                        type="button"
+                                        onclick="location.href='{{ route('admin.users.edit', $user->id) }}';"
+                                    >
+                                        Edit
+                                    </x-secondary-button>
+
+                                    <form
+                                        method="POST"
+                                        action="{{ route('admin.users.destroy', $user->id) }}"
+                                        onsubmit="return confirm('Are you sure?')"
+                                    >
                                         @csrf
                                         @method('DELETE')
-                                    <button class="px-4 py-1 text-white font-light tracking-wider bg-red-600 rounded" type="submit">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
 
-                        </tbody>
-                    </table>
-                </div>
+                                        <x-danger-button type="submit">
+                                            Delete
+                                        </x-danger-button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="py-10 text-center text-gm-muted">
+                                No users found.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        @if (method_exists($users, 'links'))
+            <div class="pt-2">
                 {!! $users->links() !!}
-        </main>
+            </div>
+        @endif
     </div>
 </x-admin-layout>
-

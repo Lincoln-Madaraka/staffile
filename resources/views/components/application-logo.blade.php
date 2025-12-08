@@ -7,6 +7,6 @@
     src="{{ $src }}"
     alt="{{ $alt }}"
     {{ $attributes->merge([
-        'class' => 'h-20 w-20 rounded-full object-cover border border-gm-border bg-gm-surface-2'
+        'class' => 'h-20 w-20 rounded-full object-cover border border-gm-border bg-gm-surface2'
     ]) }}
 />

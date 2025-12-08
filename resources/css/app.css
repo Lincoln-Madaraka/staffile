@@ -4,15 +4,14 @@
 
 /* ---------------------------------------------
    GiftMed Theme Tokens
-   We use CSS variables so the whole UI stays
-   consistent across Blade + Livewire.
-   --------------------------------------------- */
+   CSS variables power the entire UI.
+--------------------------------------------- */
 
-/* Optional light baseline (won’t be your focus yet) */
+/* Optional light baseline */
 :root {
     --gm-bg: 248 250 252;          /* slate-50-ish */
     --gm-surface: 255 255 255;
-    --gm-surface-2: 241 245 249;   /* slate-100-ish */
+    --gm-surface2: 241 245 249;   /* slate-100-ish */
     --gm-border: 226 232 240;      /* slate-200-ish */
 
     --gm-text: 15 23 42;           /* slate-900-ish */
@@ -31,7 +30,7 @@
 .dark {
     --gm-bg: 6 11 22;              /* deep navy */
     --gm-surface: 10 18 35;        /* card surface */
-    --gm-surface-2: 14 26 48;      /* secondary surface */
+    --gm-surface2: 14 26 48;      /* secondary surface */
     --gm-border: 30 41 59;         /* slate-800-ish */
 
     --gm-text: 226 232 240;        /* slate-200 */
@@ -47,8 +46,8 @@
 }
 
 /* ---------------------------------------------
-   Base layer tweaks
-   --------------------------------------------- */
+   Base layer
+--------------------------------------------- */
 @layer base {
     html, body {
         height: 100%;
@@ -58,12 +57,10 @@
         @apply bg-gm-bg text-gm-text antialiased;
     }
 
-    /* Improve default borders in dark mode */
     hr {
         @apply border-gm-border;
     }
 
-    /* Links */
     a {
         @apply text-gm-primary hover:text-gm-primaryHover transition-colors;
     }
@@ -71,15 +68,15 @@
 
 /* ---------------------------------------------
    Components layer helpers
-   We’ll use these classes in layouts/views.
-   --------------------------------------------- */
+   IMPORTANT: Use bg-gm-surface2 (NOT surface-2)
+--------------------------------------------- */
 @layer components {
     .gm-card {
         @apply bg-gm-surface border border-gm-border rounded-gm shadow-gm-soft;
     }
 
     .gm-card-muted {
-        @apply bg-gm-surface-2 border border-gm-border rounded-gm;
+        @apply bg-gm-surface2 border border-gm-border rounded-gm;
     }
 
     .gm-btn {
@@ -96,7 +93,7 @@
                px-4 py-2 rounded-lg font-medium
                border border-gm-border
                bg-transparent text-gm-text
-               hover:bg-gm-surface-2
+               hover:bg-gm-surface2
                transition-colors;
     }
 
@@ -116,7 +113,7 @@
     }
 
     .gm-table thead {
-        @apply bg-gm-surface-2;
+        @apply bg-gm-surface2;
     }
 
     .gm-table th {
@@ -130,7 +127,7 @@
 
     .gm-badge {
         @apply inline-flex items-center px-2 py-0.5 rounded-full
-               text-xs font-medium bg-gm-surface-2 text-gm-text
+               text-xs font-medium bg-gm-surface2 text-gm-text
                border border-gm-border;
     }
 }

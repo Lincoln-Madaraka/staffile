@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+
+use App\Models\User;
+use App\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -15,33 +16,30 @@ class UserSeeder extends Seeder
         $doctorRole = Role::where('name', Role::DOCTOR)->first();
         $patientRole = Role::where('name', Role::PATIENT)->first();
 
-        // Admin
         User::updateOrCreate(
-            ['email' => 'admin@example.com'],
+            ['email' => 'admin@giftmed.test'],
             [
                 'name' => 'GiftMed Admin',
                 'password' => Hash::make('password'),
-                'role_id' => $adminRole?->id,
+                'role_id' => $adminRole->id,
             ]
         );
 
-        // Doctor
         User::updateOrCreate(
-            ['email' => 'doctor@example.com'],
+            ['email' => 'doctor@giftmed.test'],
             [
                 'name' => 'GiftMed Doctor',
                 'password' => Hash::make('password'),
-                'role_id' => $doctorRole?->id,
+                'role_id' => $doctorRole->id,
             ]
         );
 
-        // Patient
         User::updateOrCreate(
-            ['email' => 'patient@example.com'],
+            ['email' => 'patient@giftmed.test'],
             [
                 'name' => 'GiftMed Patient',
                 'password' => Hash::make('password'),
-                'role_id' => $patientRole?->id,
+                'role_id' => $patientRole->id,
             ]
         );
     }

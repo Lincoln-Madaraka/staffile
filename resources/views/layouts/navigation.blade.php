@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-3">
-                        <span class="h-11 w-11 rounded-full bg-gm-surface-2 border border-gm-border p-1 flex items-center justify-center">
+                        <span class="h-11 w-11 rounded-full bg-gm-surface2 border border-gm-border p-1 flex items-center justify-center">
                             <img src="{{ asset('import/assets/logo.png') }}"
                                  alt="GiftMed Logo"
                                  class="h-9 w-9 rounded-full object-cover">
@@ -35,7 +35,7 @@
                     <x-slot name="trigger">
                         <button
                             class="inline-flex items-center gap-2 px-3 py-2 rounded-lg
-                                   border border-gm-border bg-gm-surface-2
+                                   border border-gm-border bg-gm-surface2
                                    text-sm font-medium text-gm-text
                                    hover:bg-gm-surface hover:border-gm-primary/40
                                    focus:outline-none transition ease-in-out duration-150"
@@ -76,7 +76,7 @@
                     @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-lg
                            text-gm-muted hover:text-gm-text
-                           hover:bg-gm-surface-2
+                           hover:bg-gm-surface2
                            border border-transparent hover:border-gm-border
                            focus:outline-none transition duration-150 ease-in-out"
                 >

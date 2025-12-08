@@ -1,49 +1,110 @@
-<x-admin-layout>
+<x-admin-layout
+    title="Add User"
+    subtitle="Create an admin, doctor, or patient account."
+>
+    <x-slot name="actions">
+        <a href="{{ route('admin.users.index') }}">
+            <x-secondary-button type="button">
+                Back to Users
+            </x-secondary-button>
+        </a>
+    </x-slot>
 
-    <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
-        <main class="w-full flex-grow p-6">
-            <h1 class="w-full text-3xl text-black pb-6">Add User</h1>
+    <form method="POST" action="{{ route('admin.users.store') }}" class="space-y-6">
+        @csrf
 
-            <div class="w-full mt-12">
-                <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> User Details
-                </p>
-                <form method="POST" action="{{ route('admin.users.store') }}">
-                    @csrf
-                    <div class="grid gap-6 mb-6 md:grid-cols-2">
-                <div class="mb-1">
-                    <label for="name" class="block mb-2 text-sm font-medium text-blue-900 dark:text-blue">Name</label>
-                    <input type="text" id="name" value="{{ old('name') }}"  name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    </div>
-                <div class="mb-1">
-                    <label for="email" class="block mb-2 text-sm font-medium text-blue-900 dark:text-blue">Email</label>
-                    <input type="email" id="email" value="{{ old('email') }}" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
-                </div>
-                      <div class="mb-1">
-                        <label for="start" class="block mb-2 text-sm font-medium text-blue-900 dark:text-red">Password</label>
-                        <input type="password" id="password" value="{{ old('password') }}" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required>
-                    </div>
-                    <div class="mb-1">
-                        <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-red">Password Confirmation</label>
-                        <input type="password" id="password_confirmation" value="{{ old('password_confirmation') }}"  name="password_confirmation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                        </div>
-
-                <div class="mb-1">
-                    <label for="role_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="selectType" name="role_id">
-                    @foreach ($roles as $role)
-                    <option value="{{ $role->id }}">{{ $role->name }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="mb-1">
-                </div>
-                {{--  --}}
-                </div>
-                <button type="submit" class="px-4 py-1 text-white font-light tracking-wider bg-blue-600 rounded">Add User</button>
-                </form>
+        <div class="grid gap-5 md:grid-cols-2">
+            <!-- Name -->
+            <div>
+                <x-input-label for="name" :value="__('Name')" />
+                <x-text-input
+                    id="name"
+                    name="name"
+                    type="text"
+                    class="block mt-1 w-full"
+                    :value="old('name')"
+                    required
+                    autofocus
+                    autocomplete="name"
+                />
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
-        </main>
-    </div>
 
+            <!-- Email -->
+            <div>
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input
+                    id="email"
+                    name="email"
+                    type="email"
+                    class="block mt-1 w-full"
+                    :value="old('email')"
+                    required
+                    autocomplete="username"
+                />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
+
+            <!-- Password -->
+            <div>
+                <x-input-label for="password" :value="__('Password')" />
+                <x-text-input
+                    id="password"
+                    name="password"
+                    type="password"
+                    class="block mt-1 w-full"
+                    required
+                    autocomplete="new-password"
+                />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
+
+            <!-- Password Confirmation -->
+            <div>
+                <x-input-label for="password_confirmation" :value="__('Password Confirmation')" />
+                <x-text-input
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    type="password"
+                    class="block mt-1 w-full"
+                    required
+                    autocomplete="new-password"
+                />
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
+
+            <!-- Role -->
+            <div class="md:col-span-2">
+                <x-input-label for="role_id" :value="__('Role')" />
+
+                <select
+                    id="role_id"
+                    name="role_id"
+                    class="block mt-1 w-full rounded-lg border border-gm-border bg-gm-surface text-gm-text
+                           focus:border-gm-primary focus:ring focus:ring-gm-primary/30 transition"
+                    required
+                >
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}" @selected(old('role_id') == $role->id)>
+                            {{ $role->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <x-primary-button>
+                {{ __('Add User') }}
+            </x-primary-button>
+
+            <a href="{{ route('admin.users.index') }}">
+                <x-secondary-button type="button">
+                    Cancel
+                </x-secondary-button>
+            </a>
+        </div>
+    </form>
 </x-admin-layout>

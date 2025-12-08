@@ -22,8 +22,9 @@ export default {
 
             /**
              * GiftMed Dark Blue Theme Tokens
-             * We’ll define the actual values in app.css using CSS variables.
-             * This makes the theme consistent across Blade + Livewire.
+             * Utilities will be:
+             * bg-gm-bg, bg-gm-surface, bg-gm-surface2, border-gm-border,
+             * text-gm-text, text-gm-muted, bg-gm-primary, etc.
              */
             colors: {
                 gm: {
